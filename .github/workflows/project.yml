@@ -43,13 +43,15 @@ jobs:
 
       - name: SonarQube Analysis
         env:
-          SONAR_HOST: ${{ secrets.SONAR_HOST }}
-          SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594:sonar \
+         SONAR_HOST: ${{ secrets.SONAR_HOST }}
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+         run: |
+           mvn -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594:sonar \
             -Dsonar.projectKey=Hotstar \
+            -Dsonar.projectName=Hotstar \
             -Dsonar.host.url=$SONAR_HOST \
-            -Dsonar.login=$SONAR_LOGIN
+            -Dsonar.login=$SONAR_TOKEN
+
 
   deploy:
     runs-on: ubuntu-latest
