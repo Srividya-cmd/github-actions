@@ -3,7 +3,8 @@ name: Java CI/CD Pipeline to Tomcat
 on:
   push:
     branches: [ main ]   # Trigger on push to main branch
-    jobs:
+
+jobs:
   build:
     runs-on: [self-hosted, linux]
 
@@ -29,7 +30,8 @@ on:
             echo "Maven is already installed"
           fi
           mvn -version
-          # 3. Build with Maven
+
+      # 3. Build with Maven
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
@@ -39,7 +41,8 @@ on:
         with:
           name: myapp
           path: target/*.war
-deploy:
+
+  deploy:
     runs-on: [self-hosted, linux]
     needs: build
     environment: production
