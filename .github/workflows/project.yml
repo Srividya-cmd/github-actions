@@ -92,6 +92,7 @@ jobs:
           WAR_FILE=$(ls *.war)
           echo "Deploying $WAR_FILE to Tomcat..."
           curl --fail --show-error \
+          -u "${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }}" \
           -T "$WAR_FILE" \
           "${{ secrets.TOMCAT_HOST }}/manager/text/deploy?path=/myapp&update=true"
       # 9. Optional: verify deployment
