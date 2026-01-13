@@ -98,4 +98,4 @@ jobs:
       # 9. Optional: verify deployment
       - name: Verify deployment
         run: |
-          curl -I http://${{ secrets.TOMCAT_HOST }}/myapp
+          curl -I "${{ secrets.TOMCAT_HOST }}/myapp"
